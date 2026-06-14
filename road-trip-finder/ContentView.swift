@@ -1,61 +1,24 @@
-//
-//  ContentView.swift
-//  road-trip-finder
-//
-//  Created by Alexandru-Vitali Crutoi on 13/06/2026.
-//
-
+import CoreLocation
 import SwiftUI
-import SwiftData
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
-    @Query private var items: [Item]
+    @State private var locationsHandler = LocationsHandler.shared
+    @State private var user = User.globalUser
 
     var body: some View {
-        NavigationSplitView {
-            List {
-                ForEach(items) { item in
-                    NavigationLink {
-                        Text("Item at \(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))")
-                    } label: {
-                        Text(item.timestamp, format: Date.FormatStyle(date: .numeric, time: .standard))
-                    }
-                }
-                .onDelete(perform: deleteItems)
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    EditButton()
-                }
-                ToolbarItem {
-                    Button(action: addItem) {
-                        Label("Add Item", systemImage: "plus")
-                    }
-                }
-            }
-        } detail: {
-            Text("Select an item")
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(timestamp: Date())
-            modelContext.insert(newItem)
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            for index in offsets {
-                modelContext.delete(items[index])
+        VStack(spacing: 20) {
+            if locationsHandler.lastLocation != nil {
+                Text(verbatim: user.latitude.map { String($0) } ?? "Unknown latitude")
+                Text(verbatim: user.longitude.map { String($0) } ?? "Unknown longitude")
+                Text(verbatim: user.speedKmh.map { String($0) } ?? "Unknown speed")
+                Text(verbatim: user.altitude.map { String($0) } ?? "Unknown altitude")
+            } else {
+                Text("Waiting for location...")
             }
         }
+        .padding()
+        .task {
+            locationsHandler.startLocationUpdates()
+        }
     }
-}
-
-#Preview {
-    ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
 }

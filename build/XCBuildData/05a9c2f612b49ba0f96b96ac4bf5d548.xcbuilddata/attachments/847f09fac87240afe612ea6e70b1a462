@@ -1,0 +1,36 @@
+{
+  "" : {
+    "const-values" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/road-trip-finder-primary.swiftconstvalues",
+    "dependencies" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/road-trip-finder-primary.d",
+    "diagnostics" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/road-trip-finder-primary.dia",
+    "emit-module-dependencies" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/road-trip-finder-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/road-trip-finder-primary-emit-module.dia",
+    "pch" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/road-trip-finder-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/road-trip-finder-primary.swiftdeps"
+  },
+  "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  },
+  "/Users/ali/code/road-trip-finder/road-trip-finder/ContentView.swift" : {
+    "index-unit-output-path" : "/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/ContentView.o"
+  },
+  "/Users/ali/code/road-trip-finder/road-trip-finder/LocationService.swift" : {
+    "index-unit-output-path" : "/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/LocationService.o",
+    "llvm-bc" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/LocationService.bc",
+    "object" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/LocationService.o"
+  },
+  "/Users/ali/code/road-trip-finder/road-trip-finder/User.swift" : {
+    "index-unit-output-path" : "/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/User.o",
+    "llvm-bc" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/User.bc",
+    "object" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/User.o"
+  },
+  "/Users/ali/code/road-trip-finder/road-trip-finder/road_trip_finderApp.swift" : {
+    "index-unit-output-path" : "/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/road_trip_finderApp.o",
+    "llvm-bc" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/road_trip_finderApp.bc",
+    "object" : "/Users/ali/code/road-trip-finder/build/road-trip-finder.build/Release-iphoneos/road-trip-finder.build/Objects-normal/arm64/road_trip_finderApp.o"
+  }
+}
