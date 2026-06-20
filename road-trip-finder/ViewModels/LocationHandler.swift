@@ -5,31 +5,29 @@ import SwiftUI
 import UIKit
 
 class AppDelegate: NSObject, UIApplicationDelegate {
-
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
-        let locationsHandler = LocationsHandler.shared
+        let locationsHandler = LocationHandler.shared
 
-        // If location updates were previously active, restart them after the background launch.
         if locationsHandler.updatesStarted {
             locationsHandler.startLocationUpdates()
         }
-        // If a background activity session was previously active, reinstantiate it after the background launch.
+
         if locationsHandler.backgroundActivity {
             locationsHandler.backgroundActivity = true
         }
+
         return true
     }
 }
 
-// Shared state that manages the `CLLocationManager` and `CLBackgroundActivitySession`.
 @Observable
 @MainActor
-class LocationsHandler {
+class LocationHandler {
+    static let shared = LocationHandler()
 
-    static let shared = LocationsHandler()  // Create a single, shared instance of the object.
     private let manager: CLLocationManager
     private var background: CLBackgroundActivitySession?
     private var locationUpdatesTask: Task<Void, Never>?
@@ -45,18 +43,20 @@ class LocationsHandler {
     var backgroundActivity: Bool = UserDefaults.standard.bool(forKey: "BGActivitySessionStarted") {
         didSet {
             backgroundActivity
-                ? self.background = CLBackgroundActivitySession() : self.background?.invalidate()
+                ? background = CLBackgroundActivitySession() : background?.invalidate()
             UserDefaults.standard.set(backgroundActivity, forKey: "BGActivitySessionStarted")
         }
     }
 
     private init() {
-        self.manager = CLLocationManager()  // Creating a location manager instance is safe to call here in `MainActor`.
+        manager = CLLocationManager()
     }
+}
 
+extension LocationHandler {
     func startLocationUpdates() {
-        if self.manager.authorizationStatus == .notDetermined {
-            self.manager.requestWhenInUseAuthorization()
+        if manager.authorizationStatus == .notDetermined {
+            manager.requestWhenInUseAuthorization()
         }
 
         if locationUpdatesTask != nil {
@@ -64,20 +64,26 @@ class LocationsHandler {
         }
 
         print("Starting location updates")
-        self.updatesStarted = true
+        updatesStarted = true
+
         locationUpdatesTask = Task {
             do {
                 let updates = CLLocationUpdate.liveUpdates()
+
                 for try await update in updates {
-                    if !self.updatesStarted { break }  // End location updates by breaking out of the loop.
+                    if !self.updatesStarted { break }
+
                     if let loc = update.location {
                         self.lastLocation = loc
-                        User.globalUser.latitude = loc.coordinate.latitude
-                        User.globalUser.longitude = loc.coordinate.longitude
-                        User.globalUser.speed = loc.speed >= 0 ? loc.speed : nil
-                        User.globalUser.altitude = loc.altitude
+
+                        User.shared.latitude = loc.coordinate.latitude
+                        User.shared.longitude = loc.coordinate.longitude
+                        User.shared.speed = loc.speed >= 0 ? loc.speed : nil
+                        User.shared.altitude = loc.altitude
+
                         self.isStationary = update.stationary
                         self.count += 1
+
                         print("Location \(self.count): \(loc)")
                     }
                 }
@@ -87,11 +93,13 @@ class LocationsHandler {
             self.locationUpdatesTask = nil
         }
     }
+}
 
+extension LocationHandler {
     func stopLocationUpdates() {
         print("Stopping location updates")
-        self.updatesStarted = false
-        self.locationUpdatesTask?.cancel()
-        self.locationUpdatesTask = nil
+        updatesStarted = false
+        locationUpdatesTask?.cancel()
+        locationUpdatesTask = nil
     }
 }

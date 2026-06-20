@@ -5,7 +5,8 @@ import SwiftData
 @Observable
 @MainActor
 class User {
-    static let globalUser = User()
+    static let shared = User()
+
     var latitude: Double?
     var longitude: Double?
     var altitude: Double?
@@ -13,4 +14,6 @@ class User {
     var speedKmh: Double? {
         speed.map { $0 * 3.6 }
     }
+
+    private init() {}
 }

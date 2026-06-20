@@ -5,7 +5,6 @@
 //  Created by Alexandru-Vitali Crutoi on 13/06/2026.
 //
 
-import SwiftData
 import SwiftUI
 
 @main
@@ -14,7 +13,8 @@ struct road_trip_finderApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CurrentLocationView()
+            OverpassView()
         }
     }
 }

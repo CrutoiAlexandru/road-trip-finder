@@ -1,12 +1,12 @@
 import CoreLocation
 import SwiftUI
 
-struct ContentView: View {
-    @State private var locationsHandler = LocationsHandler.shared
-    @State private var user = User.globalUser
+struct CurrentLocationView: View {
+    @State private var user = User.shared
+    @State private var locationsHandler = LocationHandler.shared
 
     var body: some View {
-        VStack(spacing: 20) {
+        HStack(spacing: 20) {
             if locationsHandler.lastLocation != nil {
                 Text(verbatim: user.latitude.map { String($0) } ?? "Unknown latitude")
                 Text(verbatim: user.longitude.map { String($0) } ?? "Unknown longitude")
